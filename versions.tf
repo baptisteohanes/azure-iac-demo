@@ -10,7 +10,7 @@ terraform {
 
   backend "azurerm" {
     resource_group_name  = "rg-hub-tfstate"
-    storage_account_name = "sahubtfstate"
+    storage_account_name = "sahubtfstatedemo"
     container_name       = "tfstate"
     key                  = "hub-network.tfstate"
     use_oidc             = true
