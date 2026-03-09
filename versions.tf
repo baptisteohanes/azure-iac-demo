@@ -7,6 +7,14 @@ terraform {
       version = "~> 4.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "rg-hub-tfstate"
+    storage_account_name = "sahubtfstate"
+    container_name       = "tfstate"
+    key                  = "hub-network.tfstate"
+    use_oidc             = true
+  }
 }
 
 provider "azurerm" {
