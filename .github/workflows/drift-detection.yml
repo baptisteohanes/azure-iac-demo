@@ -49,8 +49,10 @@ jobs:
         continue-on-error: true
         run: |
           set +e
-          terraform plan -detailed-exitcode -no-color -out=tfplan 2>&1 | tee plan_output.txt
-          echo "exitcode=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+          terraform plan -detailed-exitcode -no-color -out=tfplan > plan_output.txt 2>&1
+          PLAN_EXIT=$?
+          cat plan_output.txt
+          echo "exitcode=$PLAN_EXIT" >> "$GITHUB_OUTPUT"
 
       - name: Evaluate Plan Result
         id: evaluate
